@@ -22,11 +22,33 @@
 </div>
 <select id="Events">
     <option value="">Any Category</option>
+
+    @{
+        List<string> CategoriesList = new List<string>();
+    }
     @foreach (var item in Model)
     {
-        <option value=@Html.DisplayFor(modelItem => item.Category.Name)>@Html.DisplayFor(modelItem => item.Category.Name)</option>
+        CategoriesList.Add(item.Category.Name);
 
-}
+
+    }
+    @{ 
+        List<string> CategoriesDistinctList = CategoriesList.Distinct().ToList();
+    }
+
+
+
+       @for (int i = 0; i < CategoriesDistinctList.Count; i++)
+        {
+           
+
+            <option value=@CategoriesDistinctList[i]>@CategoriesDistinctList[i]</option>
+            
+        }
+
+
+    
+
 </select>
 
 
