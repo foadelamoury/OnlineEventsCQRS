@@ -1,0 +1,91 @@
+﻿@model OnlineEvents.Models.Event
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .imageColumn img {
+        float: left;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+</style>
+<h1>@Model.Title</h1>
+<hr />
+<div>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArabicTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ArabicTitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Description)
+        </dd>
+        <dt class="col-sm-2">
+           Cover Photo
+        </dt>
+        <dd class="col-sm-10">
+           
+
+                <div class="imageColumn">
+                    @{
+
+                        var photoPath = "~/images/" + (Model.CoverPhotoPath ?? "noimage.png");
+
+                        <img src="@photoPath" asp-append-version="true" />
+
+
+                    }
+                </div>
+
+
+            
+           
+        </dd>
+
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("PhotoAlbum", "Details","PhotoAlbum", new { id = Model.PhotoAlbumId}, new { @class = "btn btn-primary" })
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

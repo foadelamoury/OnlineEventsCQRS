@@ -1,0 +1,58 @@
+﻿@using OnlineEvents.Models
+@model OnlineEvents.Models.PhotoAlbum
+
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+
+
+
+    .column img {
+        float: left;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+    
+    
+</style>
+<h1>@Model.Title</h1>
+<hr />
+<div>
+
+    <dl class="row">
+        
+
+        @foreach (Image image in Model.Images)
+        {
+   
+    <div class="column">
+        @if (Model.Id == image.PhotoAlbumId)
+        {
+
+            var photoPath = "~/images/" + (image.ImagePath ?? "noimage.png");
+
+            <img src="@photoPath" asp-append-version="true" />
+            @Html.ActionLink("Delete", "Delete","Image", new { id = image.Id }, new { @class = "btn btn-danger" })
+
+
+        }
+    </div>
+     
+
+        }
+
+
+
+</dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Index", "PhotoAlbum", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

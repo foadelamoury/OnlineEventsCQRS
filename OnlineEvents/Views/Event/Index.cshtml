@@ -1,0 +1,110 @@
+﻿@model IEnumerable<OnlineEvents.Models.Event>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .imageColumn img {
+        float: left;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+</style>
+<div class="row">
+    <div class="col">
+        <h1>Events</h1>
+    </div>
+    <div class="col text-right">
+        <a asp-action="Create" class="btn btn-success">Create New</a>
+    </div>
+</div>
+<select id="Events">
+    <option value="">Any Category</option>
+    @foreach (var item in Model)
+    {
+        <option value=@Html.DisplayFor(modelItem => item.Category.Name)>@Html.DisplayFor(modelItem => item.Category.Name)</option>
+
+}
+</select>
+
+
+<br />
+<table class="table" id="Category">
+    <thead>
+        <tr>
+
+            <th>
+               Cover Photo
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArabicTitle)
+            </th>
+
+           
+            <th>
+                Category
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>
+                <div class="imageColumn">
+                    @{
+
+                        var photoPath = "~/images/" + (item.CoverPhotoPath ?? "noimage.png");
+
+                        <img src="@photoPath" asp-append-version="true" />
+
+
+                    }
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArabicTitle)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-secondary" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        var CategoryTable = $('#Category').DataTable({ dom: 'lrt', paging: false, info: false });
+        $('select#Events').change(function () {
+            if ($(this).val()== "") {
+                //const dp_value = $(this).val();
+                //console.log(dp_value);
+                CategoryTable.search($(this).val()).draw()
+            } else {
+                //const dp_value = $(this).val();
+                //console.log(dp_value);
+                CategoryTable.search($(this).find('option:selected').text()).draw()
+
+            }
+        });
+    });
+</script>
