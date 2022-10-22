@@ -16,6 +16,7 @@ namespace OnlineEvents.Features.Events.Commands
         public string ArabicTitle { get; set; }
         public string Content { get; set; }
         public string Address { get; set; }
+        public int CategoryId { get; set; }
 
         public class UpdateEventCommandHandler : IRequestHandler<UpdateEventCommand, int>
         {
@@ -36,7 +37,7 @@ namespace OnlineEvents.Features.Events.Commands
                 _event.ArabicTitle = command.ArabicTitle;
                 _event.Content = command.Content;
                 _event.Address = command.Address;
-              
+                _event.CategoryId = command.CategoryId;
 
                 return await _eventService.UpdateEvent(_event);
             }

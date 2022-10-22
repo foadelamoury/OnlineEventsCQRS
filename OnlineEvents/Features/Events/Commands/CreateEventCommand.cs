@@ -52,9 +52,9 @@ namespace OnlineEvents.Features.Events.Commands
                     StartDate = command.StartDate,
                     EndDate = command.EndDate,
                     CoverPhotoPath = command.CoverPhotoPath,
-                    CategoryId = 2,
-                PhotoAlbumId =2,
-                SourceId=1
+                    CategoryId = command.CategoryId,
+                PhotoAlbumId =3,
+                SourceId=3
 
             };
 

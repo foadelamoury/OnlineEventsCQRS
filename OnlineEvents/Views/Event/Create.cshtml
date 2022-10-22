@@ -1,4 +1,5 @@
-﻿@model OnlineEvents.Models.Event
+﻿@using OnlineEvents.Models 
+@model OnlineEvents.Models.Event
 
     @{
     ViewData["Title"] = "Create";
@@ -40,8 +41,22 @@
                 <input asp-for="EndDate" class="form-control" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
-
-
+            <select asp-for="CategoryId">
+                <option asp-for="CategoryId" value="">--Select Category--</option>
+                <option asp-for="CategoryId" value="1">Art & Culture</option>
+                <option asp-for="CategoryId" value="2">Career & Business</option>
+                <option asp-for="CategoryId" value="3">New Groups</option>
+                <option asp-for="CategoryId" value="8">Community & Environment</option>
+                <option asp-for="CategoryId" value="9">Health & Wellbeing</option>
+                <option asp-for="CategoryId" value="10">Parents & Family</option>
+                <option asp-for="CategoryId" value="11">Pets & Animals</option>
+                <option asp-for="CategoryId" value="12">Science & Education</option>
+                <option asp-for="CategoryId" value="13">Sports & Fitness</option>
+                <option asp-for="CategoryId" value="14">Support & Coaching</option>
+                <option asp-for="CategoryId" value="15">Technology</option>
+                <option asp-for="CategoryId" value="16">Travel & Outdoor</option>
+                <option asp-for="CategoryId" value="17">Writing</option>
+            </select>
             <div class="form-group">
                 <label asp-for="CoverPhotoPath" class="col-sm-2 col-form-label"></label>
                 <input class="form-control" type="file" name="CoverPhotoPath" accept="image/*" />

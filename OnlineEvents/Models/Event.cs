@@ -41,12 +41,14 @@ namespace OnlineEvents.Models
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-
+        
         public int PhotoAlbumId { get; set; }
         public PhotoAlbum PhotoAlbum { get; set; }
 
         public int SourceId { get; set; }
         public Source Source { get; set; }
+
+
         #region you can borrow from this [inside this]
         //[Required]
         //[RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
