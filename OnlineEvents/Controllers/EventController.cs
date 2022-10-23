@@ -3,6 +3,9 @@ using OnlineEvents.Features.Events.Queries;
 
 using OnlineEvents.Features.Sources.Queries;
 using OnlineEvents.Features.Sources.Commands;
+
+using OnlineEvents.Features.PhotoAlbums.Commands;
+using OnlineEvents.Features.PhotoAlbums.Queries;
 using Microsoft.AspNetCore.Hosting;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -80,7 +83,7 @@ namespace OnlineEvents.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, UpdateEventCommand command)
+        public async Task<IActionResult> Edit(int id, UpdateEventCommand command,CreatePhotoAlbumCommand photoAlbumCommand)
         {
             if (id != command.Id)
             {
@@ -91,6 +94,9 @@ namespace OnlineEvents.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    photoAlbumCommand.Id = command.Id;
+                    
+                    await _mediator.Send(photoAlbumCommand);
                     await _mediator.Send(command);
                     return RedirectToAction(nameof(Index));
                 }

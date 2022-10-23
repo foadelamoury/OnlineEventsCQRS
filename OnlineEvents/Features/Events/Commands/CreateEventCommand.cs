@@ -56,7 +56,7 @@ namespace OnlineEvents.Features.Events.Commands
                     CoverPhotoPath = command.CoverPhotoPath,
                     CategoryId = command.CategoryId,
                     PhotoAlbumId = 5,
-                    SourceId = command.SourceId
+                    SourceId = 13
                     
 
 

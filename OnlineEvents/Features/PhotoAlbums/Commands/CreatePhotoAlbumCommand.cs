@@ -13,9 +13,10 @@ namespace OnlineEvents.Features.PhotoAlbums.Commands
 {
     public class CreatePhotoAlbumCommand : IRequest<PhotoAlbum>
     {
-      
+
         public string Title { get; set; }
-       
+        public int Id { get; set; }
+
         public class CreatePhotoAlbumCommandHandler : IRequestHandler<CreatePhotoAlbumCommand, PhotoAlbum>
         {
             private readonly IPhotoAlbumService _photoAlbumService;
@@ -28,10 +29,10 @@ namespace OnlineEvents.Features.PhotoAlbums.Commands
             public async Task<PhotoAlbum> Handle(CreatePhotoAlbumCommand command, CancellationToken cancellationToken)
             {
 
-            var _photo = new PhotoAlbum()
+                var _photo = new PhotoAlbum()
                 {
                     Title = command.Title,
-                 
+                    Id = command.Id
             };
 
                 return await _photoAlbumService.CreatePhotoAlbum(_photo);
