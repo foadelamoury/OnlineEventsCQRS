@@ -36,6 +36,7 @@ namespace OnlineEvents
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IPhotoAlbumService, PhotoAlbumService>();
             services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<ISourceService, SourceService>();
 
 
             services.AddMediatR(Assembly.GetExecutingAssembly());

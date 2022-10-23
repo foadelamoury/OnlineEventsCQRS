@@ -32,12 +32,12 @@ namespace OnlineEvents.Controllers
         public async Task<IActionResult> Index(int id)
         {
 
-            return View(await _mediator.Send(new GetImageByIdQuery() { Id = id }));
+            return View(await _mediator.Send(new GetSourceByIdQuery() { Id = id }));
         }
         public async Task<IActionResult> Details(int id)
         {
 
-            return View(await _mediator.Send(new GetImageByIdQuery() { Id = id }));
+            return View(await _mediator.Send(new GetSourceByIdQuery() { Id = id }));
 
         }
         public IActionResult Create()

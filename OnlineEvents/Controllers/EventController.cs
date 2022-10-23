@@ -1,5 +1,8 @@
 ﻿using OnlineEvents.Features.Events.Commands;
 using OnlineEvents.Features.Events.Queries;
+
+using OnlineEvents.Features.Sources.Queries;
+using OnlineEvents.Features.Sources.Commands;
 using Microsoft.AspNetCore.Hosting;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -46,7 +49,7 @@ namespace OnlineEvents.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateEventCommand command)
+        public async Task<IActionResult> Create(CreateEventCommand command, CreateSourceCommand sourceCommand,string sourceName,string SourceDescription)
         {
 
             try
@@ -54,8 +57,12 @@ namespace OnlineEvents.Controllers
                 if (ModelState.IsValid)
                 {
                     UploadCoverPhoto(command);
-                   
+                    sourceCommand.Id = command.CategoryId+20;
+                    sourceCommand.Name = sourceName;
+                    sourceCommand.Description = SourceDescription;
+                    command.SourceId = sourceCommand.Id;
                     await _mediator.Send(command);
+                    await _mediator.Send(sourceCommand);
                     return RedirectToAction(nameof(Index));
                 }
             }

@@ -13,7 +13,6 @@ namespace OnlineEvents.Features.Events.Commands
 {
     public class CreateEventCommand : IRequest<Event>
     {
-        //public IFormFile file;
         public string Title { get; set; }
         public string ArabicTitle { get; set; }
         public string Content { get; set; }
@@ -31,6 +30,9 @@ namespace OnlineEvents.Features.Events.Commands
 
         public int SourceId { get; set; }
 
+   
+
+
         public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, Event>
         {
             private readonly IEventService _eventService;
@@ -43,7 +45,7 @@ namespace OnlineEvents.Features.Events.Commands
             public async Task<Event> Handle(CreateEventCommand command, CancellationToken cancellationToken)
             {
 
-            var _event = new Event()
+                var _event = new Event()
                 {
                     Title = command.Title,
                     ArabicTitle = command.ArabicTitle,
@@ -53,10 +55,12 @@ namespace OnlineEvents.Features.Events.Commands
                     EndDate = command.EndDate,
                     CoverPhotoPath = command.CoverPhotoPath,
                     CategoryId = command.CategoryId,
-                PhotoAlbumId =3,
-                SourceId=3
+                    PhotoAlbumId = 5,
+                    SourceId = command.SourceId
+                    
 
-            };
+
+                };
 
                 return await _eventService.CreateEvent(_event);
             }

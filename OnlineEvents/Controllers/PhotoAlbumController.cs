@@ -72,7 +72,7 @@ namespace OnlineEvents.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, UpdatePhotoAlbumCommand command,CreateImageCommand imageCommand)
+        public async Task<IActionResult> Edit(int id, UpdatePhotoAlbumCommand command, CreateImageCommand imageCommand)
         {
             if (id != command.Id)
             {
